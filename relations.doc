@@ -1,0 +1,39 @@
+relations:
+We have a user, posts, and tags. There is a one to many relationship between user and posts. so in the user model we have "post belongs_to :user" and "user has_many posts"
+belongs_to actualy just creates methords called: .posts, .posts =, .posts <<, has_posts?
+we can use User.where("age > ?, 16") to find users with age over 16.
+you can also use User.find_by_user_id_and_age (or find_all_buy_user_id_and_age). if it gets too complicated though use User.where with the SQL command.
+
+tags has_and_belongs_to_many:posts and posts would also have a has_and_belongs_to_many:tags
+You also have to create a posts_tags table. it has a tag-id and a post-id
+
+1) find in the rails guide where it shows the active record methords.
+2)create this schema
+3)manually get all the tags from the post classes
+
+test should look like
+describe Tags do
+it {should have_and_belong_to(:posts)}
+end
+
+rails g migrate CreateTagsTable
+rake db: migrate
+git commit
+git push
+
+post_tag model
+
+rake db:test:migrate
+
+next
+user leo has 3 posts. test it!
+
+In the terminal type: rails db:console
+This will allow you to be able to use sequel in the terminal to quiry the database.
+
+In the terminal type: rails c
+This will allow you to us a sort of irb equivilent for rails. so you could type  Post.where("id > ?", 3)
+
+
+
+
